@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 fade-in-up">
+    <h2 class="fw-bold text-dark"><i class="fa-solid fa-clipboard-user text-primary me-2"></i> Mark Attendance</h2>
+</div>
+
+<div class="card border-0 shadow-sm mb-4 fade-in-up" style="animation-delay: 0.1s;">
+    <div class="card-body p-4">
+        <!-- Date Selector Form -->
+        <form action="{{ url_for('attendance') }}" method="GET" class="d-flex align-items-center mb-4 w-md-50">
+            <label for="date_select" class="form-label mb-0 me-3 fw-bold text-muted">Select Date:</label>
+            <input type="date" id="date_select" name="date" class="form-control w-auto" value="{{ current_date }}" max="{{ today }}" onchange="this.form.submit()">
+        </form>
+
+        <!-- Attendance Form -->
+        <form action="{{ url_for('attendance') }}" method="POST">
+            <input type="hidden" name="date" value="{{ current_date }}">
+            
+            <div class="table-responsive mb-4">
+                <table class="table table-hover align-middle custom-table">
+                    <thead class="table-light text-muted">
+                        <tr>
+                            <th class="ps-4">ID</th>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th class="text-center pe-4">Attendance Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students %}
+                        <tr>
+                            <td class="ps-4 fw-bold text-muted">#{{ student.id }}</td>
+                            <td class="fw-semibold">{{ student.name }}</td>
+                            <td><span class="badge bg-secondary-subtle text-secondary px-3 py-2 rounded-pill">{{ student.department }}</span></td>
+                            <td class="text-center pe-4">
+                                <div class="btn-group rounded-pill shadow-sm" role="group" aria-label="Attendance Status">
+                                    <!-- Present Radio -->
+                                    <input type="radio" class="btn-check" name="status_{{ student.id }}" id="present_{{ student.id }}" autocomplete="off" value="Present" {% if attendance_map.get(student.id) == 'Present' %}checked{% endif %} required>
+                                    <label class="btn btn-outline-success px-4 rounded-start-pill" for="present_{{ student.id }}"><i class="fa-solid fa-check me-1"></i> Present</label>
+
+                                    <!-- Absent Radio -->
+                                    <input type="radio" class="btn-check" name="status_{{ student.id }}" id="absent_{{ student.id }}" autocomplete="off" value="Absent" {% if attendance_map.get(student.id) == 'Absent' %}checked{% endif %}>
+                                    <label class="btn btn-outline-danger px-4 rounded-end-pill" for="absent_{{ student.id }}"><i class="fa-solid fa-xmark me-1"></i> Absent</label>
+                                </div>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center py-5 text-muted">
+                                <i class="fa-solid fa-folder-open fs-1 mb-3 opacity-25 d-block"></i>
+                                No students found. Please add students first.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            {% if students %}
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow hover-elevate">
+                    <i class="fa-solid fa-save me-2"></i> Save Attendance
+                </button>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock %}

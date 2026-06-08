@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center fade-in-up">
+    <div class="col-md-8 col-lg-6">
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="card-header bg-primary text-white p-4 border-0">
+                <h4 class="mb-0 fw-bold"><i class="fa-solid fa-user-plus me-2"></i> Add New Student</h4>
+            </div>
+            <div class="card-body p-5">
+                <form action="{{ url_for('add_student') }}" method="POST">
+                    <div class="mb-4">
+                        <label for="name" class="form-label fw-semibold text-muted">Full Name</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-user text-muted"></i></span>
+                            <input type="text" class="form-control border-start-0 ps-0" id="name" name="name" required placeholder="e.g. Jane Doe">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="department" class="form-label fw-semibold text-muted">Department</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-building text-muted"></i></span>
+                            <select class="form-select border-start-0 ps-0" id="department" name="department" required>
+                                <option value="" disabled selected>Select Department...</option>
+                                <option value="CSE">Computer Science (CSE)</option>
+                                <option value="ECE">Electronics (ECE)</option>
+                                <option value="EEE">Electrical (EEE)</option>
+                                <option value="MECH">Mechanical (MECH)</option>
+                                <option value="CIVIL">Civil (CIVIL)</option>
+                                <option value="IT">Information Tech (IT)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <label for="email" class="form-label fw-semibold text-muted">Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-envelope text-muted"></i></span>
+                            <input type="email" class="form-control border-start-0 ps-0" id="email" name="email" required placeholder="jane.doe@example.com">
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg rounded-pill hover-elevate">
+                            <i class="fa-solid fa-check me-2"></i> Save Student
+                        </button>
+                        <a href="{{ url_for('students') }}" class="btn btn-light btn-lg rounded-pill text-muted">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

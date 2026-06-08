@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 fade-in-up">
+    <h2 class="fw-bold text-dark"><i class="fa-solid fa-file-contract text-primary me-2"></i> Attendance Reports</h2>
+    <button class="btn btn-outline-secondary rounded-pill shadow-sm" onclick="window.print()">
+        <i class="fa-solid fa-print me-1"></i> Print Report
+    </button>
+</div>
+
+<div class="card border-0 shadow-sm fade-in-up" style="animation-delay: 0.1s;">
+    <div class="card-body p-4">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 custom-table">
+                <thead class="table-light text-muted">
+                    <tr>
+                        <th class="ps-4">Student Name</th>
+                        <th class="text-center">Present Days</th>
+                        <th class="text-center">Absent Days</th>
+                        <th class="text-end pe-4">Attendance Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for report in reports %}
+                    <tr>
+                        <td class="ps-4 fw-semibold">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-circle bg-primary-subtle text-primary me-3 fw-bold">
+                                    {{ report.name[:1] | upper }}
+                                </div>
+                                {{ report.name }}
+                            </div>
+                        </td>
+                        <td class="text-center fw-bold text-success">{{ report.present_days }}</td>
+                        <td class="text-center fw-bold text-danger">{{ report.absent_days }}</td>
+                        <td class="text-end pe-4">
+                            <div class="d-flex align-items-center justify-content-end">
+                                <div class="progress me-3 w-50" style="height: 10px;">
+                                    <div class="progress-bar {% if report.percentage >= 75 %}bg-success{% elif report.percentage >= 50 %}bg-warning{% else %}bg-danger{% endif %}" role="progressbar" style="width: {{ report.percentage }}%;" aria-valuenow="{{ report.percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="badge {% if report.percentage >= 75 %}bg-success{% elif report.percentage >= 50 %}bg-warning{% else %}bg-danger{% endif %} rounded-pill py-2 px-3">{{ report.percentage }}%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center py-5 text-muted">
+                            <i class="fa-solid fa-chart-bar fs-1 mb-3 opacity-25 d-block"></i>
+                            No attendance records available to generate reports.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,250 @@
+/* Smart Attendance System Custom CSS */
+
+/* Color Variables & Theming */
+:root {
+    --primary-color: #2563eb;
+    --primary-light: #eff6ff;
+    --secondary-color: #475569;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --dark-color: #1e293b;
+    --light-bg: #f8fafc;
+    --font-family: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--light-bg);
+    color: var(--dark-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Typography Enhancements */
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.025em;
+}
+
+/* Custom Navbar */
+.custom-navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%) !important;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.custom-navbar .navbar-brand {
+    font-size: 1.5rem;
+}
+
+.custom-navbar .nav-link {
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    margin-left: 0.25rem;
+}
+
+.custom-navbar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Buttons */
+.btn {
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.hover-elevate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Tables */
+.custom-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.custom-table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-bottom-width: 1px;
+}
+
+.custom-table td {
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.custom-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.custom-table tbody tr:hover {
+    background-color: var(--primary-light);
+}
+
+/* UI Elements */
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+/* KPI Cards */
+.kpi-card {
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.kpi-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* Feature Cards (Home Page) */
+.feature-card {
+    transition: all 0.3s ease;
+    border-radius: 1rem;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* --- NEW ANIMATIONS AND HOMEPAGE STYLES --- */
+
+/* Animated Gradient Background */
+.animated-bg {
+    background: linear-gradient(-45deg, #eff6ff, #dbeafe, #bfdbfe, #93c5fd);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    border-radius: 2rem;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 30px -10px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.glass-card:hover .transition-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.transition-icon {
+    transition: transform 0.3s ease;
+}
+
+/* Floating Animation */
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Pulse Animation for buttons */
+.btn-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+/* Hero Title styling */
+.hero-title {
+    background: linear-gradient(to right, #1e3a8a, #2563eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+/* Animations Core */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 20px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.fade-in-up {
+    animation-name: fadeInUp;
+    animation-duration: 0.8s;
+    animation-fill-mode: both;
+}
+
+/* Form Styling */
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.25);
+}
+
+.input-group-text {
+    background-color: transparent;
+}
+
+/* Print Styles */
+@media print {
+    .navbar, footer, .btn, form {
+        display: none !important;
+    }
+    .card {
+        border: none !important;
+        box-shadow: none !important;
+    }
+    .container {
+        max-width: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
