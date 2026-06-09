@@ -4,6 +4,12 @@ import sqlite3
 import os
 from datetime import datetime
 
+from flask import render_template
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
 app = Flask(__name__)
 CORS(app)
 
